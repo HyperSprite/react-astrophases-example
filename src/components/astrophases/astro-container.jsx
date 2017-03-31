@@ -77,6 +77,15 @@ class Astrophases extends Component {
   render() {
     const { astrophases } = this.state;
 
+    if (astrophases.error === 'true') {
+      return (
+        <div>
+          Astrophases not availible at this time<br />
+          <button onClick={this.updateAstrophases}>Update</button>
+        </div>
+      );
+    }
+
     // something went wrong, no weatherforcast returned.
     if (!astrophases.dayofweek) {
       return (
@@ -85,10 +94,6 @@ class Astrophases extends Component {
           <button onClick={this.updateAstrophases}>Update</button>
         </div>
       );
-    }
-
-    if (astrophases.error === 'true') {
-      return <div>Failed to load Astrophases</div>;
     }
 
     return (
